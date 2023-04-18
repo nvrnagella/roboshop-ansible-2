@@ -2,3 +2,9 @@
   ansible.builtin.yum:
     name: nginx
     state: installed
+
+- name: remove existing nginx content
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
