@@ -18,3 +18,14 @@
     src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
     dest: /usr/share/nginx/html/
     remote_src: yes
+
+- name: coping roboshop reverse proxy conf file
+  ansible.builtin.copy:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: starting nginx server
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
+    enabled: yes
