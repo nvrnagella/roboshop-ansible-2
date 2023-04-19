@@ -1,0 +1,11 @@
+#print_head "loading mongodb repo file"
+#cp ${script_location}/files/mongodb.repo /etc/yum.repos.d/mongodb.repo
+#status_check
+#
+#print_head "installing mongodb-org-shell"
+#yum install mongodb-org-shell -y &>> ${LOG}
+#status_check
+#
+#print_head "loading mongodb schema"
+#mongo --host mongodb-dev.nvrnagella.online </app/schema/${component}.js &>> ${LOG}
+#status_check
