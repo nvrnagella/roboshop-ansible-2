@@ -1,5 +1,3 @@
-#APP_PREREQ
-#
 #print_head "install app dependencies"
 #npm install &>> ${LOG}
 #status_check

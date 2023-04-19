@@ -5,3 +5,13 @@
   ansible.builtin.yum:
     name: nodejs
     state: installed
+
+- name: including app prereq tasks
+  ansible.builtin.include_tasks:
+    file: app_prereq.yml
+
+- name: installing nodejs dependencies
+  community.general.npm:
+    path: /app
+    state: latest
+
