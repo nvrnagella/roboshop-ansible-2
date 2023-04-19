@@ -5,7 +5,7 @@
 
 - name: include apppreq tasks
   ansible.builtin.include_tasks:
-    name: app_prereq.yml
+    file: app_prereq.yml
 
 - name: installing maven depedencies
   ansible.builtin.shell: mvn clean package ; mv target/{{component}}-1.0.jar {{component}}.jar
@@ -14,11 +14,11 @@
 
 - name: include systemd setup tasks
   ansible.builtin.include_tasks:
-    name: systemd_setup.yml
+    file: systemd_setup.yml
 
 - name: include mysql schema
   ansible.builtin.include_tasks:
-    name: mysql_schema.yml
+    file: mysql_schema.yml
   when: schema_load
 
 - name: restart shipping
