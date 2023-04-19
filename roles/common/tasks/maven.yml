@@ -1,1 +1,23 @@
+#SCHEMA_LOAD
+#
+#print_head "restarting shipping"
+#systemctl restart ${component}
+#status_check
 - name: installing maven
+  ansible.builtin.yum:
+    name: maven
+    state: installed
+
+- name: include apppreq tasks
+  ansible.builtin.include_tasks:
+    name: app_prereq.yml
+
+- name: installing maven depedencies
+  ansible.builtin.shell: mvn clean package ; mv target/{{component}}-1.0.jar {{component}}.jar
+  args:
+    chdir: /app
+
+- name: include systemd setup tasks
+  ansible.builtin.include_tasks:
+    name: systemd_setup.yml
+
