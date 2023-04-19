@@ -1,15 +1,15 @@
-#print_head "loading mongodb repo file"
-#cp ${script_location}/files/mongodb.repo /etc/yum.repos.d/mongodb.repo
-#status_check
-#
-#print_head "installing mongodb-org-shell"
-#yum install mongodb-org-shell -y &>> ${LOG}
-#status_check
-#
-#print_head "loading mongodb schema"
-#mongo --host mongodb-dev.nvrnagella.online </app/schema/${component}.js &>> ${LOG}
-#status_check
 - name: coping repo file for mongodb
   ansible.builtin.copy:
     src: mongodb.repo
     dest: /etc/yum.repos.d/mongodb.repo
+
+- name: installing mongodb client
+  ansible.builtin.yum:
+    name: mongodb-org-shell
+    state: installed
+
+- name: loading mongodb schema
+  community.mongodb.mongodb_shell:
+    login_host: mongodb-dev.nvrnagella.online
+    file: /app/schema/{{component}}.js
+    idempotent: yes
