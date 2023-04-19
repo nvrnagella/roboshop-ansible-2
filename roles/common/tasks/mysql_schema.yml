@@ -1,6 +1,8 @@
-- name: installing mysql
+- name: installing mysql and pyMySql
   ansible.builtin.yum:
-    name: mysql
+    name:
+      - mysql
+      - python3-PyMySQL
     state: installed
 
 - name: load mysql schema
