@@ -22,4 +22,5 @@
 - name: including schema load tasks
   ansible.builtin.include_tasks:
     file: schema_load.yml
+  when: schema_load
 
