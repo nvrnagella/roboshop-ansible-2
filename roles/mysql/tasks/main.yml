@@ -1,6 +1,3 @@
-#print_head "changing mysql root password"
-#mysql_secure_installation --set-root-pass ${mysql_root_password} &>> ${LOG}
-#status_check
 - name: CentOS-8 Comes with MySQL 8 Version by default, However our application needs MySQL 5.7. So lets disable MySQL 8 version.
   ansible.builtin.shell: dnf module disable mysql
 
