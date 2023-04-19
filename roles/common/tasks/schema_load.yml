@@ -9,7 +9,4 @@
     state: installed
 
 - name: loading mongodb schema
-  community.mongodb.mongodb_shell:
-    login_host: mongodb-dev.nvrnagella.online
-    file: "/app/schema/{{component}}.js"
-    idempotent: yes
+  ansible.builtin.shell: mongo --host mongodb-dev.nvrnagella.online </app/schema/{{component}}.js
