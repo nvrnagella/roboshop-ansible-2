@@ -15,9 +15,11 @@
     path: /app
     state: latest
 
-- name: including app prereq tasks
+- name: including systemd setup tasks
   ansible.builtin.include_tasks:
     file: systemd_setup.yml
 
-
+- name: including schema load tasks
+  ansible.builtin.include_tasks:
+    file: schema_load.yml
 
