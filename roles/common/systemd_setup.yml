@@ -1,15 +1,11 @@
-#print_head "load systemd file"
-#cp ${script_location}/files/${component}.service /etc/systemd/system/${component}.service
-#status_check
-#
-#print_head "load systemd file"
-#systemctl daemon-reload
-#status_check
-#
-#print_head "enable ${component}"
-#systemctl enable ${component} &>> ${LOG}
-#status_check
-#
-#print_head "start ${component}"
-#systemctl restart ${component}
-#status_check
+- name: copying systemd file
+  ansible.builtin.copy:
+    src: "{{component}}.service"
+    dest: /etc/systemd/system/{{component}}.service
+
+- name: loading systemd file and enable and starting {{component}} service
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    name: catalogue
+    state: restarted
+    enabled: yes
