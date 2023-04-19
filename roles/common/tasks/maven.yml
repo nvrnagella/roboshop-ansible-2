@@ -21,3 +21,7 @@
   ansible.builtin.include_tasks:
     name: systemd_setup.yml
 
+- name: include mysql schema
+  ansible.builtin.include_tasks:
+    name: mysql_schema.yml
+  when: schema_load
