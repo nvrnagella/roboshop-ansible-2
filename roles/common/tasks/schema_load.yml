@@ -9,3 +9,7 @@
 #print_head "loading mongodb schema"
 #mongo --host mongodb-dev.nvrnagella.online </app/schema/${component}.js &>> ${LOG}
 #status_check
+- name: coping repo file for mongodb
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
