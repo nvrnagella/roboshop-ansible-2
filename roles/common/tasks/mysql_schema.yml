@@ -10,4 +10,4 @@
     target: /app/schema/{{component}}.sql
     login_host: mysql-dev.nvrnagella.online
     login_user: root
-    login_password: "{{root_mysql_password}}"
+    login_password: "{{mysql_root_password}}"
