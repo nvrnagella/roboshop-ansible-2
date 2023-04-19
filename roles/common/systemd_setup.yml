@@ -1,0 +1,15 @@
+#print_head "load systemd file"
+#cp ${script_location}/files/${component}.service /etc/systemd/system/${component}.service
+#status_check
+#
+#print_head "load systemd file"
+#systemctl daemon-reload
+#status_check
+#
+#print_head "enable ${component}"
+#systemctl enable ${component} &>> ${LOG}
+#status_check
+#
+#print_head "start ${component}"
+#systemctl restart ${component}
+#status_check
