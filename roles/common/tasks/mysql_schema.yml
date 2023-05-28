@@ -13,3 +13,5 @@
     login_host: mysql-dev.nvrnagella.online
     login_user: root
     login_password: "{{mysql_root_password}}"
+  vars:
+    mysql_root_password: "{{ lookup('aws_ssm', '{{env}}.mysql_DB_ADMIN_PASS', region='us-east-1' ) }}"
