@@ -19,6 +19,6 @@
 #    remote_src: yes
 - name: downloading and extract the app content
   ansible.builtin.unarchive:
-    src: https://172.31.1.57:8081/repository/{{component}}/{{component}}-{{app_version}}.zip
+    src: ${nexus_useer}:${nexus_pass}@https://172.31.1.57:8081/repository/{{component}}/{{component}}-{{app_version}}.zip
     dest: /app
     remote_src: yes
