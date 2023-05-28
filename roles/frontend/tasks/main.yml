@@ -13,11 +13,20 @@
     path: /usr/share/nginx/html
     state: directory
 
-- name: download and unzip the nginx content
+#- name: download and unzip the nginx content
+#  ansible.builtin.unarchive:
+#    src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}.zip
+#    dest: /usr/share/nginx/html/
+#    remote_src: yes
+- name: downloading and extract the app content
   ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/{{component}}.zip
+    src: ${nexus_user}:${nexus_pass}@https://172.31.1.57:8081/repository/{{component}}/{{component}}-{{app_version}}.zip
     dest: /usr/share/nginx/html/
     remote_src: yes
+  vars:
+    nexus_user: {{ lookup('aws_ssm', "nexus.user", region='us-east-1' ) }}
+    nexus_pass: {{ lookup('aws_ssm', "nexus.pass", region='us-east-1' ) }}
+
 
 - name: coping roboshop reverse proxy conf file
   ansible.builtin.template:
